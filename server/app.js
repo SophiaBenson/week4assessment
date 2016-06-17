@@ -27,3 +27,22 @@ app.post('/postRoute', urlencodedParser, function (req, res) {
       client.query("INSERT INTO zoo (animal, amount) VALUES ($1, $2)", [req.body.animal, numGenerator]);
 });
 });
+
+app.get('/getAnimals', function (req, res) {
+  console.log("bird is in /getAnimals getting animals");
+ var results =[];
+ pg.connect ( connectionString, function (err, client, done) {
+   var query = client.query('SELECT zoo.animal, zoo.amount FROM zoo;');
+   console.log("bird sees: " + query[1]);
+   //push rows
+   var rows = 0;
+   query.on('row' , function (row) {
+     results.push (row);
+   });
+   query.on('end', function () {
+     return res.json(results);
+   });
+
+
+ });//end pg.connect
+});//end
