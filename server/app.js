@@ -33,7 +33,7 @@ app.get('/getAnimals', function (req, res) {
  var results =[];
  pg.connect ( connectionString, function (err, client, done) {
    var query = client.query('SELECT zoo.animal, zoo.amount FROM zoo;');
-   console.log("bird sees: " + query[1]);
+   console.log("bird sees: " + query);
    //push rows
    var rows = 0;
    query.on('row' , function (row) {

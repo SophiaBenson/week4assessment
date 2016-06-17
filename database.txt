@@ -1,5 +1,11 @@
+Database: week4animals
+table: zoo
+
 CREATE TABLE zoo (
  id SERIAL PRIMARY KEY NOT NULL,
  animal VARCHAR(30) unique,
  amount INT
 );
+
+Insert query: "INSERT INTO zoo (animal, amount) VALUES ($1, $2)", [req.body.animal, numGenerator]
+Select query: 'SELECT zoo.animal, zoo.amount FROM zoo;'
